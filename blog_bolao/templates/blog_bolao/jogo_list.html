@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bolao da Garela</title>
+</head>
+<body>Jogos:</br>
+{% for jogo in jogos %}
+   O jogo é {{ jogo }}</br>
+    O tecnico do {{ jogo.time_1}} é {{jogo.time_1.tecnico}}</br>
+    O tenico do {{jogo.time_2}} é {{jogo.time_2.tecnico}} </br>
+    e o estadio é {{jogo.estadio.nome}}</br>
+***************</br>
+{% endfor %}
+
+</body>
+</html>
