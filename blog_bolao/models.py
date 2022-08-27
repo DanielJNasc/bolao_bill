@@ -5,6 +5,13 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+class Time(models.Model):
+    nome_time = models.CharField(max_length=100)
+    pais = models.CharField(max_length=100)
+    tecnico = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome_time
 class Estadio(models.Model):
     nome = models.CharField(max_length=100)
     capacidade = models.IntegerField()
@@ -22,8 +29,8 @@ class Jogo(models.Model):
         ('final', 'Final'),
     )
     criador = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    time_1 = models.CharField(max_length=200)
-    time_2 = models.CharField(max_length=200)
+    time_1 = models.ForeignKey('Time', related_name='time_1', on_delete=models.CASCADE)
+    time_2 = models.ForeignKey('Time', related_name='time_2', on_delete=models.CASCADE)
     fase = models.CharField(max_length=30, choices=TIPO_DE_FASE, blank=True)
     resultado = models.CharField(max_length=200, default='Esperando o jogo')
     estadio = models.ForeignKey('Estadio', on_delete=models.CASCADE)
